@@ -215,25 +215,19 @@ namespace DataStructures.LinkList
             }
         }
 
-        public void Reverse()
+        public void Reverse ()
         {
-            if (Length != 0)
+            if (Length > 1)
             {
-                Node tmp = _root;
-                tmp = GetLastElement(_root);
-                 Node newList = tmp;
-                int length = Length;
-                DeleteByIndex(Length - 1);
-                Node a = newList;
-                for (int i = 1; i < length; i++)
+                Node oldRoot = _root;
+                Node tmp;
+                while (oldRoot.Next != null)
                 {
-                    tmp = GetLastElement(_root);
-                    a.Next = new Node(tmp.Value);
-                    DeleteByIndex(Length - 1);
-                    a = a.Next;
+                    tmp = oldRoot.Next;
+                    oldRoot.Next = oldRoot.Next.Next;
+                    tmp.Next = _root;
+                    _root = tmp;
                 }
-                Length = length;
-                _root = newList;
             }
             else
                 return;

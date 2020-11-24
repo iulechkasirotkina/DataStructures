@@ -61,12 +61,11 @@ namespace DataStructures
                 IncreaseLenght();
             }
             Length++;
-            int[] newArray = new int[Length+1];
-            newArray[0] = value;
-            Array.Copy(_array, 0, newArray, 1, Length);
-            _array = newArray;
-            
-
+            for(int i = Length-1; i > 0; i--)
+            {
+                _array[i] = _array[i - 1];
+            }
+            _array[0] = value;
         }
 
         public void AddByIndex (int value, int index)
